@@ -2,14 +2,15 @@
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call,  LPVOID lpReserved)
 {
-    switch (ul_reason_for_call)
-    {
-        case DLL_PROCESS_ATTACH:
+    luxZ* st = nullptr;
 
-        case DLL_THREAD_ATTACH:
-        case DLL_THREAD_DETACH:
-        case DLL_PROCESS_DETACH:
-            break;
+    if (ul_reason_for_call == DLL_PROCESS_ATTACH) {
+        st = new luxZ();
+
+        st->LoadFile("lux.lua");
+        st->Pcall(0, LUA_MULTRET, 0);
+    } else if (ul_reason_for_call == DLL_PROCESS_DETACH){
+        delete st;
     }
 
     return TRUE;

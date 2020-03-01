@@ -73,25 +73,25 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <TargetName>LUXLIB</TargetName>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
+    <IncludePath>E:\APILibraries\WolfSSL;E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
     <LibraryPath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <TargetName>LUXLIB</TargetName>
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
+    <IncludePath>E:\APILibraries\WolfSSL;E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
     <LibraryPath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>LUXLIB</TargetName>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
+    <IncludePath>E:\APILibraries\WolfSSL;E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
     <LibraryPath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>LUXLIB</TargetName>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
+    <IncludePath>E:\APILibraries\WolfSSL;E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
     <LibraryPath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket\Release;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -171,19 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\csocket\csocket.h" />
-    <ClInclude Include="framework.h" />
     <ClInclude Include="luxlib.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="luxlib.cpp" />
-    <ClCompile Include="pch.cpp">
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
-      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
-    </ClCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

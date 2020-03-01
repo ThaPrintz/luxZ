@@ -19,7 +19,7 @@ public:
 	luxZ();
 	~luxZ();
 
-	void Register(const char* name, lua_CFunction func);
+	void Register(const char* name, int func);
 	int LoadFile(const char* file);
 	void OpenLib(const char* name, const luaL_Reg* t, int up);
 
@@ -49,5 +49,5 @@ public:
 
 	const char* ToString(int index);
 protected:
-	lua_State* lux;
+	lua_State* lux = nullptr;
 };
