@@ -1,11 +1,5 @@
-// The following ifdef block is the standard way of creating macros which make exporting
-// from a DLL simpler. All files within this DLL are compiled with the LUXLIB_EXPORTS
-// symbol defined on the command line. This symbol should not be defined on any project
-// that uses this DLL. This way any other project whose source files include this file see
-// LUXLIB_API functions as being imported from a DLL, whereas this DLL sees symbols
-// defined with this macro as being exported.
-//extern LUXLIB_API int nluxlib;
-//LUXLIB_API int fnluxlib(void);
+#pragma once
+#include "pch.h"
 
 #ifdef LUXLIB_EXPORTS
 #define LUXLIB_API __declspec(dllexport)
@@ -13,17 +7,24 @@
 #define LUXLIB_API __declspec(dllimport)
 #endif
 
+typedef LUXLIB_API int LUXPACKAGE;
+static LUXPACKAGE CSOCKS = 1;
+
 class LUXLIB_API luxZ
 {
 public:
 	luxZ();
+	luxZ(lua_State* L);
+
 	~luxZ();
+
+	void RegisterLUXPackage(LUXPACKAGE lib);
 
 	void Register(const char* name, int func);
 	int LoadFile(const char* file);
 	void OpenLib(const char* name, const luaL_Reg* t, int up);
 
-	const char* PushFString(const char* fmt, char buff);
+	const char* PushFString(const char* fmt, char* buff);
 	void PushString(const char* str);
 	void PushLiteral(const char* str);
 	void PushValue(int index);
@@ -51,3 +52,8 @@ public:
 protected:
 	lua_State* lux = nullptr;
 };
+
+/******************************
+LUX Package catalyst functions
+******************************/
+static LUXPACKAGE csocketlib(luxZ* L);

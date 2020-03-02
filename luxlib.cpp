@@ -1,7 +1,4 @@
-// luxlib.cpp : Defines the exported functions for the DLL.
-//
 #include "pch.h"
-
 
 luxZ::luxZ()
 {
@@ -9,9 +6,19 @@ luxZ::luxZ()
 	luaL_openlibs(this->lux);
 }
 
+luxZ::luxZ(lua_State* L)
+{
+	this->lux = L;
+}
+
+
 luxZ::~luxZ()
 {
 	lua_close(this->lux);
+}
+
+void luxZ::RegisterLUXPackage(LUXPACKAGE lib)
+{
 }
 
 void luxZ::Register(const char* name, int func)
@@ -29,7 +36,7 @@ void luxZ::OpenLib(const char* name, const luaL_Reg* t, int up)
 	return luaL_openlib(this->lux, name, t, up);
 }
 
-const char* luxZ::PushFString(const char* fmt, char buff)
+const char* luxZ::PushFString(const char* fmt, char* buff)
 {
 	return lua_pushfstring(this->lux, fmt, buff);
 }
