@@ -1,5 +1,5 @@
 #pragma once
-#include "pch.h"
+#include <lua.hpp>
 
 #ifdef LUXLIB_EXPORTS
 #define LUXLIB_API __declspec(dllexport)

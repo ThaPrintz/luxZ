@@ -6,8 +6,6 @@
 #include <new>
 
 #include "csocket.h"
-#include <lua.hpp>
-
 #include "luxlib.h"
 
 #endif
