@@ -244,13 +244,61 @@ static LUXPACKAGE RECV_csocket(luxZ* L)
 	return 1;
 }
 
+luxZ* catalyst = new luxZ(true);
+static int garbc(lua_State* L) { catalyst->ReassignEnvironment(L); return GC_csocket(catalyst); }
+static int tostc(lua_State* L) { catalyst->ReassignEnvironment(L); return TOSTR_csocket(catalyst); }
+static int makec(lua_State* L) { catalyst->ReassignEnvironment(L); return CONSTRUCT_csocket(catalyst); }
+static int isvdc(lua_State* L) { catalyst->ReassignEnvironment(L); return ISVALID_csocket(catalyst); }
+static int bindc(lua_State* L) { catalyst->ReassignEnvironment(L); return BIND_csocket(catalyst); }
+static int listc(lua_State* L) { catalyst->ReassignEnvironment(L); return LISTEN_csocket(catalyst); }
+static int acptc(lua_State* L) { catalyst->ReassignEnvironment(L); return ACCEPT_csocket(catalyst); }
+static int cnctc(lua_State* L) { catalyst->ReassignEnvironment(L); return CONNECT_csocket(catalyst); }
+static int sslic(lua_State* L) { catalyst->ReassignEnvironment(L); return SSLINIT_csocket(catalyst); }
+static int sslbc(lua_State* L) { catalyst->ReassignEnvironment(L); return SSLBindSocket_csocket(catalyst); }
+static int sslac(lua_State* L) { catalyst->ReassignEnvironment(L); return SSLACCEPT_csocket(catalyst); }
+static int slwrc(lua_State* L) { catalyst->ReassignEnvironment(L); return SSLWANTREAD_csocket(catalyst); }
+static int slwwc(lua_State* L) { catalyst->ReassignEnvironment(L); return SSLWANTWRITE_csocket(catalyst); }
+static int selrc(lua_State* L) { catalyst->ReassignEnvironment(L); return SELECTREADABLE_csocket(catalyst); }
+static int selwc(lua_State* L) { catalyst->ReassignEnvironment(L); return SELECTWRITEABLE_csocket(catalyst); }
+static int ioctc(lua_State* L) { catalyst->ReassignEnvironment(L); return IOCTRLSOCK_csocket(catalyst); }
+static int setsc(lua_State* L) { catalyst->ReassignEnvironment(L); return SETSOCKOPT_csocket(catalyst); }
+static int sendc(lua_State* L) { catalyst->ReassignEnvironment(L); return SEND_csocket(catalyst); }
+static int recvc(lua_State* L) { catalyst->ReassignEnvironment(L); return RECV_csocket(catalyst); }
+
+static const luaL_Reg csocketmeta[] = {
+	{"__gc",		garbc},
+	{"__tostring",	tostc},
+	{0, 0}
+};
+
+static const luaL_Reg csocketmembers[] = {
+	{"New",				makec},
+	{"IsValid",			isvdc},
+	{"Bind",			bindc},
+	{"Listen",			listc},
+	{"Accept",			acptc},
+	{"Connect",			cnctc},
+	{"SSL_Init",		sslic},
+	{"SSLBindSocket",	sslbc},
+	{"SSLAccept",		sslac},
+	{"SSLWantRead",		slwrc},
+	{"SSLWantWrite",	slwwc},
+	{"SelectReadable",	selrc},
+	{"SelectWriteable", selwc},
+	{"IOCtrlSocket",	ioctc},
+	{"SetSockOpt",		setsc},
+	{"Send",			sendc},
+	{"Recv",			recvc},
+	{0,0}
+};
+
 static LUXPACKAGE csocketlib(luxZ* L)
 {
-	L->OpenLib(LUACSOCK, NULL, 0);
+	L->OpenLib(LUACSOCK, csocketmembers, 0);
 
 	L->NewMetatable(LUACSOCK);
 
-	L->OpenLib("", NULL, 0);
+	L->OpenLib(NULL, csocketmeta, 0);
 	L->PushLiteral("__index");
 	L->PushValue(-3);
 	L->Rawset(-3);

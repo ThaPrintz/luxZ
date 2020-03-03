@@ -17,6 +17,11 @@ luxZ::~luxZ()
 	lua_close(this->lux);
 }
 
+void luxZ::ReassignEnvironment(lua_State* L)
+{
+	this->lux = L;
+}
+
 void luxZ::RegisterLUXPackage(LUXPACKAGE lib)
 {
 }

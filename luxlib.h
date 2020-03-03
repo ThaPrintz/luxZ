@@ -16,6 +16,8 @@ public:
 	luxZ();
 	luxZ(lua_State* L);
 
+	void ReassignEnvironment(lua_State* L);
+
 	~luxZ();
 
 	void RegisterLUXPackage(LUXPACKAGE lib);
