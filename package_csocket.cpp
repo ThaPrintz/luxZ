@@ -67,6 +67,7 @@ static LUXPACKAGE CONSTRUCT_csocket(luxZ* L)
 	bdata.port		    = L->ToString(2);
 	bdata.dataprotocol  = L->CheckInt(3);
 	bdata.ipprotocol    = L->CheckInt(4);
+	bdata.secure		= L->CheckInt(5);
 
 	CSOCKET* luasock	= PUSH_csocket(L);
 	new (luasock) CSOCKET(&bdata);
@@ -292,7 +293,7 @@ static const luaL_Reg csocketmembers[] = {
 	{0,0}
 };
 
-static LUXPACKAGE csocketlib(luxZ* L)
+LUXPACKAGE csocketlib(luxZ* L)
 {
 	L->OpenLib(LUACSOCK, csocketmembers, 0);
 

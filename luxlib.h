@@ -7,7 +7,7 @@
 #define LUXLIB_API __declspec(dllimport)
 #endif
 
-typedef LUXLIB_API int LUXPACKAGE;
+typedef LUXLIB_API const int LUXPACKAGE;
 static LUXPACKAGE CSOCKS = 1;
 
 class LUXLIB_API luxZ
@@ -15,14 +15,13 @@ class LUXLIB_API luxZ
 public:
 	luxZ();
 	luxZ(lua_State* L);
+	luxZ(int EMPTY);
+	virtual ~luxZ();
 
 	void ReassignEnvironment(lua_State* L);
+	void CloseEnvironment();
 
-	~luxZ();
-
-	void RegisterLUXPackage(LUXPACKAGE lib);
-
-	void Register(const char* name, int func);
+	void Register(const char* name, int(*)(lua_State* L))
 	int LoadFile(const char* file);
 	void OpenLib(const char* name, const luaL_Reg* t, int up);
 
@@ -55,7 +54,29 @@ protected:
 	lua_State* lux = nullptr;
 };
 
+static int LoadLUXPackage(lua_State *L){
+	luxZ* LL = new luxZ(L);
+	
+	const char* f1 = LL->ToString(1);
+
+	LL->LoadFile(f1);
+	LL->Pcall(0, LUA_MULTRET, 0);
+
+	return 1;
+}
+
 /******************************
-LUX Package catalyst functions
+LUX Package initializer functions
 ******************************/
-static LUXPACKAGE csocketlib(luxZ* L);
+LUXLIB_API LUXPACKAGE csocketlib(luxZ* L);
+
+/*********************************
+LUX environment initializer
+*********************************/
+LUXLIB_API luxZ* NewLUXInterface()
+{
+	luxZ* L = new luxZ();
+
+	L->Register("loadluxpackage", LoadLUXPackage);
+
+}

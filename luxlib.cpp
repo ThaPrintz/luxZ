@@ -11,10 +11,10 @@ luxZ::luxZ(lua_State* L)
 	this->lux = L;
 }
 
-
-luxZ::~luxZ()
+luxZ::luxZ(int EMPTY)
 {
-	lua_close(this->lux);
+	if (EMPTY)
+		this->lux = nullptr;
 }
 
 void luxZ::ReassignEnvironment(lua_State* L)
@@ -22,11 +22,12 @@ void luxZ::ReassignEnvironment(lua_State* L)
 	this->lux = L;
 }
 
-void luxZ::RegisterLUXPackage(LUXPACKAGE lib)
+void luxZ::CloseEnvironment()
 {
+	lua_close(this->lux);
 }
 
-void luxZ::Register(const char* name, int func)
+void luxZ::Register(const char* name, int(func)(lua_State* L))
 {
 	return lua_register(this->lux, name, (lua_CFunction)func);
 }
@@ -53,7 +54,7 @@ void luxZ::PushString(const char* str)
 
 void luxZ::PushLiteral(const char* str)
 {
-	//lua_pushliteral(this->lux, str);
+	return lua_pushlstring(this->lux, str, strlen(str));
 }
 
 void luxZ::PushValue(int index)
