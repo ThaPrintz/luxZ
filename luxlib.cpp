@@ -17,6 +17,11 @@ luxZ::luxZ(int EMPTY)
 		this->lux = nullptr;
 }
 
+luxZ::~luxZ()
+{
+
+}
+
 void luxZ::ReassignEnvironment(lua_State* L)
 {
 	this->lux = L;

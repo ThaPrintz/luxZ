@@ -3,9 +3,7 @@
 
 #ifndef PCH_H
 #define PCH_H
-#include <new>
-
-#include "csocket.h"
+#include <csocket.h>
 #include "luxlib.h"
 
 #endif

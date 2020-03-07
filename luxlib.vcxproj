@@ -175,6 +175,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="luxlib.h" />
+    <ClInclude Include="packages.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>
   <ItemGroup>
