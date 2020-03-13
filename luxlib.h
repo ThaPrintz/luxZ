@@ -18,6 +18,8 @@ public:
 	void ReassignEnvironment(lua_State* L);
 	void CloseEnvironment();
 
+	int RunString(const char* s);
+
 	void Register(const char* name, int(func)(lua_State* L));
 	int LoadFile(const char* file);
 	void OpenLib(const char* name, const luaL_Reg* t, int up);

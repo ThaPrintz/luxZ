@@ -32,6 +32,17 @@ void luxZ::CloseEnvironment()
 	lua_close(this->lux);
 }
 
+int luxZ::RunString(const char* str)
+{
+	if (luaL_loadstring(this->lux, str) == 0) {
+		lua_call(this->lux, 0, 0);
+
+		return 1;
+	}
+
+	return NULL;
+}
+
 void luxZ::Register(const char* name, int(func)(lua_State* L))
 {
 	return lua_register(this->lux, name, (lua_CFunction)func);
