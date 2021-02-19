@@ -5,8 +5,6 @@
 #define LUXLIB_H
 
 #include "luxlib.h"
-#include "packages.h"
-
 #include <webxlib.h>
 
 #endif //LUXLIB_H

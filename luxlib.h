@@ -1,6 +1,9 @@
 #pragma once
 #include <lua.hpp>
 
+#ifndef LUXZ_H
+#define LUXZ_H
+
 class luxZ
 {
 public:
@@ -53,3 +56,33 @@ typedef int LUXPACKAGE;
 LUX Package initializer functions
 ******************************/
 LUXPACKAGE webxluxlib(luxZ* L);
+
+static int LoadLUXPackage(lua_State* L)
+{
+	luxZ* LL = new luxZ(L);
+
+	const char* f1 = LL->ToString(1);
+
+	LL->LoadFile(f1);
+	LL->Pcall(0, LUA_MULTRET, 0);
+
+	delete LL;
+
+	return 1;
+}
+
+/*********************************
+LUX environment initializer
+*********************************/
+luxZ* NewLUXInterface()
+{
+	luxZ* L = new luxZ();
+
+	L->Register("loadluxpackage", LoadLUXPackage);
+
+	webxluxlib(L);
+
+	return L;
+}
+
+#endif //LUXZ_H
