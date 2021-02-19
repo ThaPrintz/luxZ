@@ -32,7 +32,7 @@
     <ClCompile Include="luxlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="package_csocket.cpp">
+    <ClCompile Include="package_webxlib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

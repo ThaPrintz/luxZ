@@ -33,7 +33,7 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -85,8 +85,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <TargetName>LUXLIB</TargetName>
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>E:\APILibraries\WolfSSL;E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket;$(IncludePath)</IncludePath>
-    <LibraryPath>E:\APILibraries\LuaJIT-2.0.5\src;E:\Visual Studio Projects\csocket\Release;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\APIs and Libraries\WolfSSL;D:\APIs and Libraries\LuaJIT-2.0.5\src;D:\APIs and Libraries\webxlib\webxlib;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\APIs and Libraries\LuaJIT-2.0.5\src;D:\APIs and Libraries\webxlib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <TargetName>LUXLIB</TargetName>
@@ -180,7 +180,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="luxlib.cpp" />
-    <ClCompile Include="package_csocket.cpp" />
+    <ClCompile Include="package_webxlib.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

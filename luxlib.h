@@ -1,13 +1,7 @@
 #pragma once
 #include <lua.hpp>
 
-#ifdef LUXLIB_EXPORTS
-#define LUXLIB_API __declspec(dllexport)
-#else
-#define LUXLIB_API __declspec(dllimport)
-#endif
-
-class LUXLIB_API luxZ
+class luxZ
 {
 public:
 	luxZ();
@@ -58,5 +52,4 @@ typedef int LUXPACKAGE;
 /******************************
 LUX Package initializer functions
 ******************************/
-LUXPACKAGE csocketlib(luxZ* L);
-static LUXPACKAGE cryptxlib(luxZ* L);
+LUXPACKAGE webxluxlib(luxZ* L);

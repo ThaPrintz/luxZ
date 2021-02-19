@@ -18,13 +18,13 @@ static int LoadLUXPackage(lua_State* L)
 /*********************************
 LUX environment initializer
 *********************************/
-LUXLIB_API luxZ* NewLUXInterface()
+luxZ* NewLUXInterface()
 {
 	luxZ* L = new luxZ();
 
 	L->Register("loadluxpackage", LoadLUXPackage);
 
-	csocketlib(L);
+	webxluxlib(L);
 
 	return L;
 }
